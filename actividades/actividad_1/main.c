@@ -33,24 +33,28 @@ int main() {
     // Inicializacion del LCD
     lcd_init();
     // Inicializo ADC
-
+      adc_init();
     // Inicializo GPIO26 como entrada analogica
-
+      adc_gpio_init(26)
     // Selecciono canal analogico
-
+      adc_select_input(0);
     while(true) {
         // Leer NTC
-        
+        adc_value = adc_read();
+        printf("valor adc: %d \n", adc_value);
+        v = adc_value*3.3/4095;
+        printf("valor voltaje: %.2f \n", v)
+        rntc = 10000.0/((3.3/v)-1);
+        printf("valor rntc: %.2f \n", rntc)
         // Calculo temperatura
-        
-        // Limpio LCD
-        lcd_clear();
+        temperatura = beta/(log(rntc/2200)+(beta/298.15))-273.15;
         // Variable para el string
         char str[16];
         // Creo string
         
         // Imprimo string en segunda fila
-        lcd_string(str);
+        printf("Temperatura %.2f C \n",temperatura)
+        printf("------------------- \n");
         // Espero 500 ms
         sleep_ms(500);
     }
