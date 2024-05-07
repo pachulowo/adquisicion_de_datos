@@ -14,8 +14,10 @@ int main() {
     uint16_t adc_value = 0;
     // Variable para guardar el valor de temperatura
     float temperatura = 0.0;
+    float v = 0.0;
+    float rntc = 0.0;
     // Constante de proporcionalidad del termistor
-    const uint16_t beta = 3950;
+    const uint16_t beta = 4000;
     // Habilito USB
     stdio_init_all();
     // Configuro el I2C0 a 100 KHz de clock
